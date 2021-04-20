@@ -149,6 +149,7 @@ services:
         - backend
       links:
         - docker-in-docker
+      restart: always
 
 ### PHP-FPM ##############################################
     php-fpm:
@@ -253,6 +254,7 @@ services:
         - backend
       links:
         - docker-in-docker
+      restart: always
 
 ### PHP Worker ############################################
     php-worker:
@@ -298,6 +300,7 @@ services:
         - "dockerhost:${DOCKER_HOST_IP}"
       networks:
         - backend
+      restart: always
 
 ### NGINX Server #########################################
     nginx:
@@ -325,6 +328,7 @@ services:
       networks:
         - frontend
         - backend
+      restart: always
 
 ### MySQL ################################################
     mysql:
@@ -343,6 +347,7 @@ services:
         - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       networks:
         - backend
+      restart: always
 
 ### Certbot #########################################
     certbot:
@@ -356,6 +361,7 @@ services:
         - EMAIL=kyle.martin@goascendal.com
       networks:
         - frontend
+      restart: always
 
 ### Docker-in-Docker ################################################
     docker-in-docker:
@@ -370,15 +376,4 @@ services:
         - 2375
       networks:
         - backend
-
-### DOCKER-REGISTRY ################################################
-    docker-registry:
-      build:
-        context: ./docker-registry
-      volumes:
-        - /etc/localtime:/etc/localtime:ro
-        - ${DATA_PATH_HOST}/docker-registry:/var/lib/registry
-      ports:
-        - "${DOCKER_REGISTRY_PORT}:5000"
-      networks:
-        - backend
+      restart: always
