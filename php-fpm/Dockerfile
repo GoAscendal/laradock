@@ -1159,6 +1159,18 @@ RUN if [ ${DOWNGRADE_OPENSSL_TLS_AND_SECLEVEL} = true ]; then \
 
 RUN set -xe; php -v | head -n 1 | grep -q "PHP ${LARADOCK_PHP_VERSION}."
 
+###########################################################################
+# OGR2OGR:
+###########################################################################
+
+USER root
+
+ARG INSTALL_OGR2OGR=false
+
+RUN if [ ${INSTALL_OGR2OGR} = true ]; then \
+      apt-get -y install gdal-bin \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
