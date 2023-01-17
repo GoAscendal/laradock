@@ -342,6 +342,7 @@ services:
         - ./certbot/letsencrypt/:/var/www/letsencrypt
       environment:
         - CN=pro.gometroapp.com
+        - CN2=dataportal.gometro.co.za
         - EMAIL=kyle.martin@goascendal.com
       networks:
         - frontend
