@@ -329,6 +329,7 @@ services:
       volumes:
         - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
         - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+      mem_limit: 3g
       networks:
         - backend
       restart: always
